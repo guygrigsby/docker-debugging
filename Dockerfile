@@ -12,8 +12,8 @@ FROM alpine AS runtime
 
 RUN adduser -S -D -H -h /app appuser
 USER appuser
+FROM alpine
 COPY --from=build /go/src/app/* /
-ENTRYPOINT ["/app"]
-# Alternatively use with entrypoint see ./entrypoint.sh
-#ENTRYPOINT ["/home/robot/entrypoint.sh"]
-#CMD ["pytest", "/home/robot/"]
+COPY entrypoint.sh /
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/app"]

@@ -6,4 +6,5 @@ if [ $1 = "--help" ]; then
 
         exit 1
 fi
+
 exec "$@"
